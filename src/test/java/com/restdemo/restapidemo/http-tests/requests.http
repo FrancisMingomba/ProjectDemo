@@ -3,9 +3,17 @@ POST http://localhost:8080/users
 Content-Type: application/json 
 
 {  
-    "firstName": "Francis",
-    "lastName": "Kalonga",
-    "email":"aurel@gmail.com",
+    "firstName": "aure",
+    "lastName": "MIngo",
+    "email":"a@gmail.com",
     "password":"password"
    
 }
+
+GET http://localhost:8080/getAllUsers
+Content-Type: application/json
+
+
+GET http://localhost:8080/users/1
+Content-Type: application/json
+

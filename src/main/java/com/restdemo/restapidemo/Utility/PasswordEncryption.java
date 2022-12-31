@@ -3,15 +3,14 @@ package com.restdemo.restapidemo.Utility;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import org.springframework.stereotype.Service;
-
-import com.restdemo.restapidemo.error.NoSuchAlgorithmException;
 
 @Service
 public class PasswordEncryption {
 
-    public byte[] getSHA(String input) throws NoSuchAlgorithmException, java.security.NoSuchAlgorithmException {
+    public byte[] getSHA(String input) throws NoSuchAlgorithmException {
         // Static getInstance method is called with hashing SHA
         MessageDigest md = MessageDigest.getInstance("SHA-256");
 

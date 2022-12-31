@@ -2,10 +2,9 @@ package com.restdemo.restapidemo.Utility;
 
 import java.security.MessageDigest;
 import java.security.SecureRandom;
+import java.security.NoSuchAlgorithmException;
 
 import org.springframework.stereotype.Service;
-
-import com.restdemo.restapidemo.error.NoSuchAlgorithmException;
 
 @Service
 public class SecurePassword {
@@ -13,7 +12,7 @@ public class SecurePassword {
     // byte[] salt = getSalt();
 
     public String getSecurePassword(String password, byte[] saltValue)
-            throws NoSuchAlgorithmException, java.security.NoSuchAlgorithmException {
+            throws NoSuchAlgorithmException {
 
         String generatedPassword = null;
         MessageDigest md = MessageDigest.getInstance("SHA-256");
