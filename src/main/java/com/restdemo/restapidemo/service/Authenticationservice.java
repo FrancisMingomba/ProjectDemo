@@ -1,6 +1,7 @@
 package com.restdemo.restapidemo.service;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
@@ -17,7 +18,11 @@ public interface Authenticationservice {
 
     public ResponseEntity<Object> logout(User user) throws UserNotFoundException;
 
-    public ResponseEntity<Object> getAllUsers() throws UserNotFoundException;
+    public List<User> getAllUsers() throws UserNotFoundException;
 
     public User getSingleUser(Long id) throws UserNotFoundException;
+
+    public User deleteUser(Long id) throws UserNotFoundException;
+
+    public User updateUser(User user) throws UserNotFoundException;;
 }

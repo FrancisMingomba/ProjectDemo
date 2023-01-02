@@ -2,11 +2,10 @@ package com.restdemo.restapidemo.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
-
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -85,14 +84,6 @@ public class AuthenticationServiceImpl implements Authenticationservice {
     // --------------------------------------------------------------------------------------
 
     // @GetMapping("")
-    public ResponseEntity<Object> getAllUsers() throws UserNotFoundException {
-        List<User> userInDb = StreamSupport.stream(this.userRepository.findAll().spliterator(), false)
-                .collect(Collectors.toList());
-
-        if (userInDb.isEmpty() || userInDb.size() == 0)
-            throw new UserNotFoundException();
-        return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
-    }
 
     @Override
     public User getSingleUser(Long id) throws UserNotFoundException {
@@ -104,21 +95,23 @@ public class AuthenticationServiceImpl implements Authenticationservice {
         return user.get();
     }
 
-    // @PutMapping("/user/{id")
-    public ResponseEntity<User> updateUser(@RequestBody User user) throws UserNotFoundException {
-        return new ResponseEntity<User>(userRepository.save(user), HttpStatus.ACCEPTED);
+    public User updateUser(User userFromClient) throws UserNotFoundException {
+
+        return this.userRepository.save(userFromClient);
 
     }
 
-    public ResponseEntity<HttpStatus> deleteUser(@PathVariable Long id) throws UserNotFoundException {
+    public User deleteUser(Long id) throws UserNotFoundException {
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
-            userRepository.delete(user.get());
+            // userRepository.deleteUser(user.get());
 
-            return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
+            // return this.userRepository.save(user);
+            return null;
         }
 
-        return new ResponseEntity<HttpStatus>(HttpStatus.BAD_REQUEST);
+        // return new ResponseEntity<HttpStatus>(HttpStatus.BAD_REQUEST);
+        return null;
 
     }
 
@@ -134,6 +127,23 @@ public class AuthenticationServiceImpl implements Authenticationservice {
     public ResponseEntity<Object> logout(User user) throws UserNotFoundException {
 
         return null;
+    }
+
+    @Override
+    public List<User> getAllUsers() throws UserNotFoundException {
+
+        Iterable<User> userInDb = this.userRepository.findAll();
+
+        if (userInDb == null)
+            throw new UserNotFoundException();
+
+        return convertUsersToList(userInDb);
+    }
+
+    private List<User> convertUsersToList(Iterable<User> users) {
+        return StreamSupport.stream(users.spliterator(), false)
+                .collect(Collectors.toList());
+
     }
 
 }

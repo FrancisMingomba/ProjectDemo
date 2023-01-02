@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,10 +40,9 @@ public class UserApi {
     }
 
     @GetMapping("/getAllUsers")
-    public ResponseEntity<Object> getAllUsers(@RequestBody User userFromClients)
-            throws UserNotFoundException, com.restdemo.restapidemo.error.UserNotFoundException {
-        return authenticationservice.getAllUsers();
-
+    public ResponseEntity<Object> getAllUsers()
+            throws UserNotFoundException {
+        return ResponseEntity.ok(authenticationservice.getAllUsers());
     }
 
     @GetMapping("/users/{id}")
@@ -50,5 +50,17 @@ public class UserApi {
             throws UserNotFoundException {
         return ResponseEntity.ok(authenticationservice.getSingleUser(id));
     }
+
+    // -------------------------------------------------------------------------
+
+    @PutMapping("/users/{id}")
+    public User updateUser(@RequestBody User user) throws UserNotFoundException {
+
+        // return authenticationservice.updateUser(userFromClients);
+        return authenticationservice.updateUser(user);
+
+    }
+
+    // -------------------------------------------------------------------------
 
 }
