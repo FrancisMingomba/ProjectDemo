@@ -3,7 +3,9 @@ package com.restdemo.restapidemo.api;
 import java.security.NoSuchAlgorithmException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,16 +53,30 @@ public class UserApi {
         return ResponseEntity.ok(authenticationservice.getSingleUser(id));
     }
 
-    // -------------------------------------------------------------------------
+
 
     @PutMapping("/users/{id}")
-    public User updateUser(@RequestBody User user) throws UserNotFoundException {
+    public User updateUser(@PathVariable Long id, @RequestBody User user)
+            throws UserNotFoundException {
 
-        // return authenticationservice.updateUser(userFromClients);
-        return authenticationservice.updateUser(user);
+        // System.out.println("It works with id " + String.valueOf(id) + ", firstname: "
+        // + user.getFirstName());
+        // System.out.println("It works with id " + user.getId());
+
+        return authenticationservice.updateUser(id, user);
+        // return null;
 
     }
 
-    // -------------------------------------------------------------------------
+    // --------------------------------------------------------------------
+
+    @DeleteMapping("/deleteUser/{id}")
+    public void deleteUser(@PathVariable Long id)
+            throws UserNotFoundException {
+        // return ResponseEntity.ok(authenticationservice.deleteUser(id));
+        // return null;
+    }
+
+    // --------------------------------------------------------------------
 
 }

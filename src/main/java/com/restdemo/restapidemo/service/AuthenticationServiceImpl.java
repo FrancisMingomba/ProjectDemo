@@ -1,6 +1,7 @@
 package com.restdemo.restapidemo.service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -8,12 +9,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-//import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import com.restdemo.restapidemo.Utility.SecurePassword;
 import com.restdemo.restapidemo.error.DuplicateUserException;
 import com.restdemo.restapidemo.error.EmptyFileException;
@@ -81,9 +78,6 @@ public class AuthenticationServiceImpl implements Authenticationservice {
         return salt;
     }
 
-    // --------------------------------------------------------------------------------------
-
-    // @GetMapping("")
 
     @Override
     public User getSingleUser(Long id) throws UserNotFoundException {
@@ -95,27 +89,37 @@ public class AuthenticationServiceImpl implements Authenticationservice {
         return user.get();
     }
 
-    public User updateUser(User userFromClient) throws UserNotFoundException {
+    public User updateUser(Long userId, User user) throws UserNotFoundException {
 
-        return this.userRepository.save(userFromClient);
 
-    }
+        User userInDb = this.userRepository.findById(userId).get();
 
-    public User deleteUser(Long id) throws UserNotFoundException {
-        Optional<User> user = userRepository.findById(id);
-        if (user.isPresent()) {
-            // userRepository.deleteUser(user.get());
-
-            // return this.userRepository.save(user);
-            return null;
+        if (Objects.nonNull(user.getFirstName()) &&
+                !"".equalsIgnoreCase(user.getFirstName())) {
+            userInDb.setFirstName(user.getFirstName());
         }
 
-        // return new ResponseEntity<HttpStatus>(HttpStatus.BAD_REQUEST);
-        return null;
+        if (Objects.nonNull(user.getLastName()) &&
+                !"".equalsIgnoreCase(user.getLastName())) {
+            userInDb.setLastName(user.getLastName());
+
+        }
+
+        if (Objects.nonNull(user.getPassword()) &&
+                !"".equalsIgnoreCase(user.getPassword())) {
+            userInDb.setEmail(user.getPassword());
+        }
+
+        if (Objects.nonNull(user.getEmail()) &&
+                !"".equalsIgnoreCase(user.getEmail())) {
+            userInDb.setEmail(user.getEmail());
+        }
+
+        return this.userRepository.save(userInDb);
 
     }
 
-    // --------------------------------------------------------------------------------------
+
 
     @Override
     public ResponseEntity<Object> login(User user) throws UserNotFoundException {
@@ -143,6 +147,13 @@ public class AuthenticationServiceImpl implements Authenticationservice {
     private List<User> convertUsersToList(Iterable<User> users) {
         return StreamSupport.stream(users.spliterator(), false)
                 .collect(Collectors.toList());
+
+    }
+
+    @Override
+    public void deleteUser(Long userId) throws UserNotFoundException {
+        this.userRepository.deleteById(userId);
+        // TODO Auto-generated method stub
 
     }
 

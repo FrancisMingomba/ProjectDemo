@@ -22,7 +22,7 @@ public interface Authenticationservice {
 
     public User getSingleUser(Long id) throws UserNotFoundException;
 
-    public User deleteUser(Long id) throws UserNotFoundException;
+    public void deleteUser(Long id) throws UserNotFoundException;
 
-    public User updateUser(User user) throws UserNotFoundException;;
+    public User updateUser(Long id, User user) throws UserNotFoundException;;
 }

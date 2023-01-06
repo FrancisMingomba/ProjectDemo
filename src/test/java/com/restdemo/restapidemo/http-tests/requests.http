@@ -3,10 +3,10 @@ POST http://localhost:8080/users
 Content-Type: application/json 
 
 {  
-    "firstName": "Aure",
-    "lastName": "Aure",
-    "email":"aure@gmail.com",
-    "password":"password"
+    "firstName": "Francis",
+    "lastName": "Francis",
+    "password":"password",
+    "email":"fr@gmail.com"
    
 }
 
@@ -14,21 +14,24 @@ GET http://localhost:8080/getAllUsers
 Content-Type: application/json
 
 
-GET http://localhost:8080/users/2
+GET http://localhost:8080/users/1
 
-PUT  http://localhost:8080/users/2
+//PUT http://localhost:8080/users?firstname="John"?lastname="Cooks"
+
+PUT  http://localhost:8080/users/1
 Content-Type: application/json 
 
-{  
-    "firstName": "Mingo",
-    "lastName": "Aurelie",
-    "email":"aure@gmail.com",
-    "password":"password"
+{
+    "firstName": "Miya",
+    "lastName": "Miya",
+    "password":"newpassword",
+    "email":"simonia@gmail.com"
+    
    
 }
 
-PUT   http://localhost:8080/users/2
-Content-Type: application/json 
+DELETE   http://localhost:8080/deleteUser/1
+Content-Type: application/json
 
 
 
