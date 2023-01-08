@@ -59,24 +59,17 @@ public class UserApi {
     public User updateUser(@PathVariable Long id, @RequestBody User user)
             throws UserNotFoundException {
 
-        // System.out.println("It works with id " + String.valueOf(id) + ", firstname: "
-        // + user.getFirstName());
-        // System.out.println("It works with id " + user.getId());
-
         return authenticationservice.updateUser(id, user);
-        // return null;
+
 
     }
-
-    // --------------------------------------------------------------------
 
     @DeleteMapping("/deleteUser/{id}")
-    public void deleteUser(@PathVariable Long id)
-            throws UserNotFoundException {
-        // return ResponseEntity.ok(authenticationservice.deleteUser(id));
-        // return null;
+    public ResponseEntity<User> deleteUser(@PathVariable Long id) throws UserNotFoundException {
+
+        authenticationservice.deleteUser(id);
+        return null;
     }
 
-    // --------------------------------------------------------------------
 
 }

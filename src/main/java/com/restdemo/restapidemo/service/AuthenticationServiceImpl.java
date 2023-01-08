@@ -37,6 +37,7 @@ public class AuthenticationServiceImpl implements Authenticationservice {
     @Autowired
     SecurePassword securePassword;
 
+
     public User signup(User userFromClient)
 
             throws DuplicateUserException, EmptyFileException, NoSuchAlgorithmException {
@@ -151,8 +152,10 @@ public class AuthenticationServiceImpl implements Authenticationservice {
     }
 
     @Override
-    public void deleteUser(Long userId) throws UserNotFoundException {
+    public void deleteUser(Long userId) {
+
         this.userRepository.deleteById(userId);
+
         // TODO Auto-generated method stub
 
     }
