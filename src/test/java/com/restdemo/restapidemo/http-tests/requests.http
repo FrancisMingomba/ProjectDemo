@@ -3,10 +3,10 @@ POST http://localhost:8080/users
 Content-Type: application/json 
 
 {  
-    "firstName": "kkkkk",
-    "lastName": "sssssss",
+    "firstName": "aaaaa",
+    "lastName": "gggggg",
     "password":"password",
-    "email":"ks@gmail.com"
+    "email":"ak@gmail.com"
    
 }
 
@@ -18,7 +18,7 @@ GET http://localhost:8080/users/1
 
 //PUT http://localhost:8080/users?firstname="John"?lastname="Cooks"
 
-PUT  http://localhost:8080/users/1
+PUT  http://localhost:8080/updateUser/1
 Content-Type: application/json 
 
 {
@@ -30,7 +30,7 @@ Content-Type: application/json
    
 }
 
-DELETE   http://localhost:8080/deleteUser/4
+DELETE   http://localhost:8080/deleteUser/1
 Content-Type: application/json
 
 

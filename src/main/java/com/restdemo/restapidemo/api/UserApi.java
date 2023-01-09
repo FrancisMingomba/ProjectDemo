@@ -55,7 +55,16 @@ public class UserApi {
 
 
 
-    @PutMapping("/users/{id}")
+    // @PutMapping("/users/{id}")
+    // public User updateUser(@PathVariable Long id, @RequestBody User user)
+    // throws UserNotFoundException {
+
+    // return authenticationservice.updateUser(id, user);
+
+    // }
+
+    // -------------------------------------------------------
+    @PutMapping("/updateUser/{id}")
     public User updateUser(@PathVariable Long id, @RequestBody User user)
             throws UserNotFoundException {
 
@@ -63,6 +72,7 @@ public class UserApi {
 
 
     }
+    // ------------------------------------------------------
 
     @DeleteMapping("/deleteUser/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable Long id) throws UserNotFoundException {
