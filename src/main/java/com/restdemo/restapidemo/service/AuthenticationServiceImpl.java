@@ -44,11 +44,17 @@ public class AuthenticationServiceImpl implements Authenticationservice {
         if (alreadyExist(userFromClient))
             throw new DuplicateUserException("User already exist");
 
+        // -------------------------------------------
+        boolean _isActive = isActive();
+
+        // -------------------------------------------
+
         byte[] _salt_value = getSalt();
 
         String saltValue = _salt_value.toString();
 
         userFromClient.setSalt(saltValue);
+        userFromClient.setActive(_isActive);
 
         String passwordFromUser = userFromClient.getPassword();
 
@@ -151,12 +157,44 @@ public class AuthenticationServiceImpl implements Authenticationservice {
 
     }
 
+    // @Override
+    // public void deleteUser(Long userId) {
+
+    // this.userRepository.deleteById(userId);
+
+    // // TODO Auto-generated method stub
+
+    // }
+
     @Override
-    public void deleteUser(Long userId) {
+    public boolean isActive() {
 
-        this.userRepository.deleteById(userId);
-
+        return true;
         // TODO Auto-generated method stub
+        // return null;
+    }
+
+    // ------------------------------------------------------------------------------------------
+    @Override
+    public User deleteUser(Long userId, User user) throws UserNotFoundException {
+
+        User userInDb = this.userRepository.findById(userId).get();
+
+        if (Objects.nonNull(user.isActive())) {
+            userInDb.setActive(notActive());
+        }
+        // TODO Auto-generated method stub
+        return null;
+
+    }
+    // -----------------------------------------------------------------------------------------
+
+    @Override
+    public boolean notActive() {
+
+        System.out.println(" null");
+        // TODO Auto-generated method stub
+        return false;
 
     }
 
