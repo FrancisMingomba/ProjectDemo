@@ -3,8 +3,8 @@ POST http://localhost:8080/users
 Content-Type: application/json 
 
 {  
-    "firstName": "aaaaa",
-    "lastName": "gggggg",
+    "firstName": "Francis",
+    "lastName": "Mingomba",
     "password":"password",
     "email":"ak@gmail.com"
    
@@ -32,6 +32,16 @@ Content-Type: application/json
 
 DELETE   http://localhost:8080/deleteUser/1
 Content-Type: application/json
+
+
+
+PUT  http://localhost:8080/deactivateUser/1
+Content-Type: application/json 
+
+{
+    "active": "true"
+}
+
 
 
 

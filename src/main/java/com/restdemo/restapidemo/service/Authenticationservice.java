@@ -23,14 +23,12 @@ public interface Authenticationservice {
     public User getSingleUser(Long id) throws UserNotFoundException;
 
     // public void deleteUser(Long id) throws UserNotFoundException;
-    public User deleteUser(Long userId, User user) throws UserNotFoundException;
+    // public User deleteUser(Long userId, User user) throws UserNotFoundException;
 
     public User updateUser(Long id, User user) throws UserNotFoundException;
 
-    public boolean isActive();
+    public String isActive();
 
-    public boolean notActive();
-
-    // public User deleteUser(Long id, User user) throws UserNotFoundException;
+    public User deactivateUser(Long id, User user) throws UserNotFoundException;
 
 }

@@ -45,7 +45,10 @@ public class AuthenticationServiceImpl implements Authenticationservice {
             throw new DuplicateUserException("User already exist");
 
         // -------------------------------------------
-        boolean _isActive = isActive();
+
+        String _status = isActive();
+
+        userFromClient.setActive(_status);
 
         // -------------------------------------------
 
@@ -54,7 +57,7 @@ public class AuthenticationServiceImpl implements Authenticationservice {
         String saltValue = _salt_value.toString();
 
         userFromClient.setSalt(saltValue);
-        userFromClient.setActive(_isActive);
+        // userFromClient.setActive(_isActive);
 
         String passwordFromUser = userFromClient.getPassword();
 
@@ -157,45 +160,31 @@ public class AuthenticationServiceImpl implements Authenticationservice {
 
     }
 
-    // @Override
-    // public void deleteUser(Long userId) {
 
-    // this.userRepository.deleteById(userId);
-
-    // // TODO Auto-generated method stub
-
-    // }
-
+    // -------------------------------------------------------------------------------------
     @Override
-    public boolean isActive() {
-
-        return true;
-        // TODO Auto-generated method stub
-        // return null;
-    }
-
-    // ------------------------------------------------------------------------------------------
-    @Override
-    public User deleteUser(Long userId, User user) throws UserNotFoundException {
+    public User deactivateUser(Long userId, User user) throws UserNotFoundException {
 
         User userInDb = this.userRepository.findById(userId).get();
 
-        if (Objects.nonNull(user.isActive())) {
-            userInDb.setActive(notActive());
+        if (Objects.nonNull(user.getActive()) &&
+                !"".equalsIgnoreCase(user.getActive())) {
+            userInDb.setActive(user.getActive());
         }
-        // TODO Auto-generated method stub
-        return null;
 
+        return this.userRepository.save(userInDb);
+
+        // TODO Auto-generated method stub
+        // return null;
     }
-    // -----------------------------------------------------------------------------------------
+    // -----------------------------------------------------------------------------------
 
     @Override
-    public boolean notActive() {
+    public String isActive() {
+        final String status = "true";
 
-        System.out.println(" null");
         // TODO Auto-generated method stub
-        return false;
-
+        return status;
     }
 
 }

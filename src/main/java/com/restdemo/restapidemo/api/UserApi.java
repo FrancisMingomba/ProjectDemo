@@ -55,14 +55,6 @@ public class UserApi {
 
 
 
-    // @PutMapping("/users/{id}")
-    // public User updateUser(@PathVariable Long id, @RequestBody User user)
-    // throws UserNotFoundException {
-
-    // return authenticationservice.updateUser(id, user);
-
-    // }
-
     // -------------------------------------------------------
     @PutMapping("/updateUser/{id}")
     public User updateUser(@PathVariable Long id, @RequestBody User user)
@@ -74,13 +66,23 @@ public class UserApi {
     }
     // ------------------------------------------------------
 
-    // @DeleteMapping("/deleteUser/{id}")
-    // public ResponseEntity<User> deleteUser(@PathVariable Long id) throws
-    // UserNotFoundException {
+    // @PutMapping("/deactivateUser/{id}")
+    // public User deactivateUser(@PathVariable Long userId, @RequestBody User user)
+    // throws UserNotFoundException {
 
-    // authenticationservice.deleteUser(id);
-    // return null;
+    // return authenticationservice.deactivateUser(userId, user);
+
     // }
 
+    // -------------------------------------------------------------------
+
+    @PutMapping("/deactivateUser/{id}")
+    public User deactivateUser(@PathVariable Long id, @RequestBody User user)
+            throws UserNotFoundException {
+
+        return authenticationservice.deactivateUser(id, user);
+
+    }
+    // -------------------------------------------------------------------
 
 }

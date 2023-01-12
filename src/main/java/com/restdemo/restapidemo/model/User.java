@@ -7,6 +7,7 @@ import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+//import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -27,6 +28,6 @@ public class User {
     private String password;
     private String email;
     private String salt;
-    boolean isActive;
+    private String active;
 
 }
