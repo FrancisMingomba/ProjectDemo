@@ -46,9 +46,9 @@ public class AuthenticationServiceImpl implements Authenticationservice {
 
         // -------------------------------------------
 
-        String _status = isActive();
+        String _setActive = setActive();
 
-        userFromClient.setActive(_status);
+         userFromClient.setIsActive(_setActive);
 
         // -------------------------------------------
 
@@ -92,6 +92,7 @@ public class AuthenticationServiceImpl implements Authenticationservice {
     @Override
     public User getSingleUser(Long id) throws UserNotFoundException {
         Optional<User> user = userRepository.findById(id);
+
 
         if (!user.isPresent())
             throw new UserNotFoundException();
@@ -165,12 +166,17 @@ public class AuthenticationServiceImpl implements Authenticationservice {
     @Override
     public User deactivateUser(Long userId, User user) throws UserNotFoundException {
 
+        String _status = isActive();
+
         User userInDb = this.userRepository.findById(userId).get();
 
-        if (Objects.nonNull(user.getActive()) &&
-                !"".equalsIgnoreCase(user.getActive())) {
-            userInDb.setActive(user.getActive());
+        if (Objects.nonNull(user.getIsActive()) &&
+                !"".equalsIgnoreCase(user.getIsActive())) {
+            userInDb.setIsActive(user.getIsActive());
+
         }
+
+        userInDb.setIsActive(_status);
 
         return this.userRepository.save(userInDb);
 
@@ -181,6 +187,36 @@ public class AuthenticationServiceImpl implements Authenticationservice {
 
     @Override
     public String isActive() {
+        final String status = "false";
+
+        // // TODO Auto-generated method stub
+        return status;
+    }
+
+    @Override
+    public User activateUser(Long id, User user) throws UserNotFoundException {
+
+        String _status = isActive();
+
+        User userInDb = this.userRepository.findById(id).get();
+
+        if (Objects.nonNull(user.getIsActive()) &&
+                !"".equalsIgnoreCase(user.getIsActive())) {
+            userInDb.setIsActive(user.getIsActive());
+
+        }
+
+        userInDb.setIsActive(_status);
+
+        return this.userRepository.save(userInDb);
+
+        // TODO Auto-generated method stub
+        // return null;
+    }
+
+    @Override
+    public String setActive() {
+
         final String status = "true";
 
         // TODO Auto-generated method stub

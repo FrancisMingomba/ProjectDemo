@@ -4,9 +4,9 @@ Content-Type: application/json
 
 {  
     "firstName": "Francis",
-    "lastName": "Mingomba",
+    "lastName": "Francis",
     "password":"password",
-    "email":"ak@gmail.com"
+    "email":"fr@gmail.com"
    
 }
 
@@ -14,11 +14,11 @@ GET http://localhost:8080/getAllUsers
 Content-Type: application/json
 
 
-GET http://localhost:8080/users/1
+GET http://localhost:8080/users/2
 
 //PUT http://localhost:8080/users?firstname="John"?lastname="Cooks"
 
-PUT  http://localhost:8080/updateUser/1
+PUT  http://localhost:8080/updateUser/2
 Content-Type: application/json 
 
 {
@@ -39,7 +39,7 @@ PUT  http://localhost:8080/deactivateUser/1
 Content-Type: application/json 
 
 {
-    "active": "true"
+    "active": "false"
 }
 
 

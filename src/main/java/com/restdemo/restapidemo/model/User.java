@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
+
 public class User {
 
     @Id
@@ -28,6 +29,6 @@ public class User {
     private String password;
     private String email;
     private String salt;
-    private String active;
+    private String isActive;
 
 }
