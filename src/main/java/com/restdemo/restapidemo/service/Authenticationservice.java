@@ -29,10 +29,10 @@ public interface Authenticationservice {
 
     public String isActive();
 
-    public String setActive();
+    public String setStatusToFales();
 
     public User deactivateUser(Long id, User user) throws UserNotFoundException;
 
-    public User activateUser(Long id, User user) throws UserNotFoundException;
+    public User desableUser(Long id, User user) throws UserNotFoundException;
 
 }

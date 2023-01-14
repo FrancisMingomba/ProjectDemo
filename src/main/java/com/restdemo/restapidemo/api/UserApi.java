@@ -74,7 +74,6 @@ public class UserApi {
 
     // }
 
-    // -------------------------------------------------------------------
 
     @PutMapping("/deactivateUser/{id}")
     public User deactivateUser(@PathVariable Long id, @RequestBody User user)
@@ -83,6 +82,17 @@ public class UserApi {
         return authenticationservice.deactivateUser(id, user);
 
     }
-    // -------------------------------------------------------------------
+
+    // ------------------------------------------------------------------------------------
+
+    @PutMapping("/desableUser/{id}")
+    public User desableUser(@PathVariable Long id, @RequestBody User user)
+            throws UserNotFoundException {
+
+        return authenticationservice.desableUser(id, user);
+
+    }
+
+    // ------------------------------------------------------------------------------------
 
 }

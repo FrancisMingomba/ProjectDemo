@@ -45,10 +45,10 @@ public class AuthenticationServiceImpl implements Authenticationservice {
             throw new DuplicateUserException("User already exist");
 
         // -------------------------------------------
+        String _isActive = isActive();
+        userFromClient.setIsActive(_isActive);
+        ;
 
-        String _setActive = setActive();
-
-         userFromClient.setIsActive(_setActive);
 
         // -------------------------------------------
 
@@ -187,16 +187,16 @@ public class AuthenticationServiceImpl implements Authenticationservice {
 
     @Override
     public String isActive() {
-        final String status = "false";
+        final String status = "true";
 
         // // TODO Auto-generated method stub
         return status;
     }
 
     @Override
-    public User activateUser(Long id, User user) throws UserNotFoundException {
+    public User desableUser(Long id, User user) throws UserNotFoundException {
 
-        String _status = isActive();
+        String _setStatusTofalse = setStatusToFales();
 
         User userInDb = this.userRepository.findById(id).get();
 
@@ -206,21 +206,21 @@ public class AuthenticationServiceImpl implements Authenticationservice {
 
         }
 
-        userInDb.setIsActive(_status);
+        userInDb.setIsActive(_setStatusTofalse);
 
         return this.userRepository.save(userInDb);
 
         // TODO Auto-generated method stub
-        // return null;
+
     }
 
     @Override
-    public String setActive() {
+    public String setStatusToFales() {
 
-        final String status = "true";
-
+        final String status = "fale";
         // TODO Auto-generated method stub
         return status;
     }
+
 
 }
