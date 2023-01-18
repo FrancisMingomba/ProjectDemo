@@ -1,5 +1,6 @@
 package com.restdemo.restapidemo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -47,7 +48,7 @@ public class AuthenticationServiceImpl implements Authenticationservice {
         // -------------------------------------------
         String _isActive = isActive();
         userFromClient.setIsActive(_isActive);
-        ;
+
 
 
         // -------------------------------------------
@@ -147,12 +148,42 @@ public class AuthenticationServiceImpl implements Authenticationservice {
     @Override
     public List<User> getAllUsers() throws UserNotFoundException {
 
+
         Iterable<User> userInDb = this.userRepository.findAll();
 
-        if (userInDb == null)
-            throw new UserNotFoundException();
+        // ----------------------------------------------------------------
 
-        return convertUsersToList(userInDb);
+        // for (User item : userInDb) {
+
+        // if (item.getIsActive() != "true") {
+        // System.ou//t.println("No test ");
+        // return convertUsersToList(userInDb);
+        // }
+
+        // System.out.println("Item : " + item.getIsActive());
+        // System.out.println(item.getIsActive());
+
+        // }
+
+        // ----------------------------------------------------------------
+
+        // if (userInDb == null)
+        // throw new UserNotFoundException();
+
+        List<User> data = convertUsersToList(userInDb);
+
+        // List<User> activeUsers = new ArrayList<User>();
+        // for (User user : data) {
+        // if (user.getIsActive() == "true") {
+        // activeUsers.add(user);
+        // }
+        // }
+
+        // return activeUsers;
+
+        return data.stream()
+                .filter(o -> !o.isActive()).toList();
+
     }
 
     private List<User> convertUsersToList(Iterable<User> users) {
@@ -217,7 +248,7 @@ public class AuthenticationServiceImpl implements Authenticationservice {
     @Override
     public String setStatusToFales() {
 
-        final String status = "fale";
+        final String status = "false";
         // TODO Auto-generated method stub
         return status;
     }

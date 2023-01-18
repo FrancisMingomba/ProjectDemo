@@ -4,9 +4,9 @@ Content-Type: application/json
 
 {  
     "firstName": "Aurelie",
-    "lastName": "Aurelie",
+    "lastName": "Aaurelie",
     "password":"password",
-    "email":"aure@gmail.com"
+    "email":"aue@gmail.com"
    
 }
 
@@ -14,7 +14,7 @@ GET http://localhost:8080/getAllUsers
 Content-Type: application/json
 
 
-GET http://localhost:8080/users/2
+GET http://localhost:8080/users/1
 Content-Type: application/json
 
 //PUT http://localhost:8080/users?firstname="John"?lastname="Cooks"
@@ -33,18 +33,18 @@ Content-Type: application/json
 
 
 
-PUT  http://localhost:8080/deactivateUser/2
-Content-Type: application/json 
+# PUT  http://localhost:8080/deactivateUser/1
+# Content-Type: application/json 
 
-{
+# {
 
-    "active": "true"
+#     "active": "fale"
 
-}
+# }
 
 
 
-PUT  http://localhost:8080/desableUser/2
+PUT  http://localhost:8080/desableUser/3
 Content-Type: application/json 
 
 {
